@@ -8,7 +8,7 @@ def converte(arquivo):
     #Coverte para tipo Excel com os valores Brutos
     arquivocsv.to_excel("arquivo.xlsx", sheet_name="Bruto", index=False)
     arquivoxls = pd.read_excel("arquivo.xlsx", sheet_name="Bruto")
-    #print(arquivoxls.info())
+    
     #Primeiro  Atribição X tecnico
     tecnicos  = arquivoxls[["Atribuído para - Técnico", "ID", "Entidade"]]
     #print(tecnicos.head)

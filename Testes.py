@@ -31,4 +31,18 @@
     while i <= ws1.max_row:
         print(ws1['B' + str(i)].value)
         #wb.create_sheet(ws1['B' + str(i)].value)
-        i+=1'''
+        i+=1
+        
+        #Intera entre as celulas de uma coluna versao 2
+    """
+    i = 2
+    while i <= ws1.max_row:
+        print(ws1['B' + str(i)].value)
+        #wb.create_sheet(ws1['B' + str(i)].value)
+        i+=1"""
+
+
+        
+        
+        '''
+
