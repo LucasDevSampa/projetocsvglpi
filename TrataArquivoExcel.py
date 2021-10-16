@@ -9,6 +9,8 @@ def TratarArquivo(arquivo):
     #Carrega o arquivo Excel
     wb = load_workbook(filename = arquivo)
     ws1 = wb['Chamados Atribuidos']
+
+    
     
     ws1['A1'].value = 'Quantidade'
     ws1.cell(1,1).font = Font(bold= True)

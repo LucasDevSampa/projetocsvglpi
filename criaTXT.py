@@ -10,25 +10,12 @@ arquivocsv = "/home/lucasc/Downloads/glpi.csv"
 destinocsv = "/home/lucasc/Documentos/PythonPrograms/"
 if os.path.isfile(arquivocsv):
     shutil.copy2(arquivocsv, destinocsv)
-    os.remove(arquivocsv)
+    #os.remove(arquivocsv)
 else:
     print("Erro %s arquivo não encontrado" % arquivocsv)
 
 #Carrega o csv bruto do glpi
 chamados_df = pd.read_csv('glpi.csv', sep=';')
-
-#Lista de Analistas
-ListaAnalistas = [
-'Josue Ferreira',
-'Rodrigo Gama',
-'Carlos Silva',                      
-'Roney Santos',                      
-'Vinicius Oliveira',                
-'CRYSTOPHER LOURIVAL GOMES DIAS',
-'Louis Henrique Reis Muniz da Silva',
-'Henio Murillo',
-'Francisco Leonildo Silva de Souza',
-'Kaique Santos ']
 
 #Transforma o dataframe chamados em excel
 chamados_df.to_excel("arquivo.xlsx", sheet_name="Bruto", index=False)
@@ -65,10 +52,20 @@ wb.save("provisorio.xlsx")
 
 #Cria um novo dataframe com esse excel
 chamados_Atribuido_df = pd.read_excel("provisorio.xlsx", "Chamados Atribuidos")
-chamados = ""
+
 
 #calcula o numero de chamados
 qtd=len(chamados_Atribuido_df.value_counts(['ID']))
+
+#Cria a lista de Analistas com chamados
+usuarios = len(chamados_Atribuido_df.value_counts(['Atribuído para - Técnico']))
+print('O numero de analistas com chamados: %d\n\n'%usuarios)
+ListaAnalistas = chamados_Atribuido_df['Atribuído para - Técnico'].unique()
+ListaAnalistas = list(ListaAnalistas)
+del(ListaAnalistas[0])
+print(ListaAnalistas)
+
+
 
 #Transforma em txt e organiza os valores no arquivo de texto
 with open('chamados.txt', 'w') as f:
@@ -76,19 +73,31 @@ with open('chamados.txt', 'w') as f:
 
 with open('chamados.txt', 'a') as f:
     f.write('TOTAL FIELD SP = %d\n'%qtd)
-    f.write('---------------------\n\n')
+    f.write('%d analistas com chamados\n'%usuarios)
+    f.write('----------------------------\n')
+
 
 for nome in ListaAnalistas:
-    analista = chamados_Atribuido_df.loc[chamados_df['Atribuído para - Técnico'] == nome, [ 'Atribuído para - Técnico','ID','Entidade']]
+    with open('chamados.txt', 'a') as f:
+        f.writelines('*%s*\n'%nome)
+    analista = chamados_Atribuido_df.loc[chamados_df['Atribuído para - Técnico'] == nome, ['ID','Entidade']]
     analista.to_csv("chamados.txt", header=None, index=None, sep='-', mode='a')
     with open('chamados.txt', 'a') as f:
-        f.write('')
+        f.writelines('\n')
+    
+
+#with open('chamados.txt', 'w') as t:
+analista = chamados_Atribuido_df.loc[chamados_df['Atribuído para - Técnico'] == 'Vinicius Oliveira', ['Atribuído para - Técnico','ID','Entidade']]
+
+
+    
 
 
 #Apaga o arquivo glpi.csv apos fazer os tratamentos
 glpicsv = 'glpi.csv'
 if os.path.isfile(glpicsv):
-    os.remove(glpicsv)
+    #os.remove(glpicsv)
+    pass
 else:
     print("Erro %s arquivo não encontrado" % glpicsv)
 
