@@ -10,7 +10,7 @@ arquivocsv = "/home/lucasc/Downloads/glpi.csv"
 destinocsv = "/home/lucasc/Documentos/PythonPrograms/"
 if os.path.isfile(arquivocsv):
     shutil.copy2(arquivocsv, destinocsv)
-    #os.remove(arquivocsv)
+    os.remove(arquivocsv)
 else:
     print("Erro %s arquivo não encontrado" % arquivocsv)
 
@@ -62,9 +62,8 @@ usuarios = len(chamados_Atribuido_df.value_counts(['Atribuído para - Técnico']
 print('O numero de analistas com chamados: %d\n\n'%usuarios)
 ListaAnalistas = chamados_Atribuido_df['Atribuído para - Técnico'].unique()
 ListaAnalistas = list(ListaAnalistas)
-del(ListaAnalistas[0])
+#del(ListaAnalistas[0])
 print(ListaAnalistas)
-
 
 
 #Transforma em txt e organiza os valores no arquivo de texto
@@ -76,7 +75,7 @@ with open('chamados.txt', 'a') as f:
     f.write('%d analistas com chamados\n'%usuarios)
     f.write('----------------------------\n')
 
-
+#Cria o texto para ser enviado para o whatsUp
 for nome in ListaAnalistas:
     with open('chamados.txt', 'a') as f:
         f.writelines('*%s*\n'%nome)
@@ -90,20 +89,10 @@ for nome in ListaAnalistas:
 analista = chamados_Atribuido_df.loc[chamados_df['Atribuído para - Técnico'] == 'Vinicius Oliveira', ['Atribuído para - Técnico','ID','Entidade']]
 
 
-    
-
-
 #Apaga o arquivo glpi.csv apos fazer os tratamentos
 glpicsv = 'glpi.csv'
 if os.path.isfile(glpicsv):
-    #os.remove(glpicsv)
+    os.remove(glpicsv)
     pass
 else:
     print("Erro %s arquivo não encontrado" % glpicsv)
-
-
-
-
-
-    
-
