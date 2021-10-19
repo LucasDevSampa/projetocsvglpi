@@ -6,8 +6,8 @@ from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill, Border, Side, Alignment, Protection
 
 #copia arquivo csv da pasta Downloads e deleta o arquivo apos isso
-arquivocsv = "C:\\Downloads\glpi.csv"
-destinocsv = "C:\\Users\Lucas\Documents\projetocsvglpi"
+arquivocsv = 'C:\\Users\Lucas\Downloads\glpi.csv'
+destinocsv = 'C:\\Users\Lucas\Documents\projetocsvglpi'
 if os.path.isfile(arquivocsv):
     shutil.copy2(arquivocsv, destinocsv)
     os.remove(arquivocsv)
@@ -71,8 +71,8 @@ with open('chamados.txt', 'w') as f:
     pass
 
 with open('chamados.txt', 'a') as f:
-    f.write('TOTAL FIELD SP = %d\n'%qtd)
-    f.write('%d analistas com chamados\n'%usuarios)
+    f.write('*TOTAL FIELD SP* = %d\n'%qtd)
+    f.write('%d Analistas com chamados\n'%usuarios)
     f.write('----------------------------\n')
 
 #Cria o texto para ser enviado para o whatsUp
