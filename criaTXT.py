@@ -6,8 +6,8 @@ from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill, Border, Side, Alignment, Protection
 
 #copia arquivo csv da pasta Downloads e deleta o arquivo apos isso
-arquivocsv = "/home/lucasc/Downloads/glpi.csv"
-destinocsv = "/home/lucasc/Documentos/PythonPrograms/"
+arquivocsv = "C:\\Downloads\glpi.csv"
+destinocsv = "C:\\Users\Lucas\Documents\projetocsvglpi"
 if os.path.isfile(arquivocsv):
     shutil.copy2(arquivocsv, destinocsv)
     os.remove(arquivocsv)
