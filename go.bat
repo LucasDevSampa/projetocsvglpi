@@ -1,2 +1,2 @@
 cd "C:\projetocsvglpi"
-python criaTXT.py
+python main.py

@@ -1,5 +1,6 @@
 import shutil
 import os
+'''Este script pega o arquivo que esta na pasta Downloads do usuario copia para a pasta do programa'''
 
 def copiaArquivo(arquivo):
     print("#Copiando arquivo da pasta Download")
@@ -11,5 +12,11 @@ def copiaArquivo(arquivo):
     else:
         print("Erro %s arquivo não encontrado" % arquivo)
 
-if __name__ == "__main__":
-    copiaArquivo()
+def deletaArquivo(arquivo):
+    print("Deletando arquivo csv")
+    glpicsv = arquivo
+    if os.path.isfile(glpicsv):
+        os.remove(glpicsv)
+    else:
+        print("Erro %s arquivo não encontrado" % glpicsv)
+    
