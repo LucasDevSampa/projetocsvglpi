@@ -4,10 +4,11 @@ import pandas as pd
 from openpyxl import Workbook
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill, Border, Side, Alignment, Protection
+import getpass
 
 #copia arquivo csv da pasta Downloads e deleta o arquivo apos isso
-arquivocsv = 'C:\\Users\Lucas\Downloads\glpi.csv'
-destinocsv = 'C:\\Users\Lucas\Documents\projetocsvglpi'
+arquivocsv = 'C:\\Users\%s\Downloads\glpi.csv'%getpass.getuser()
+destinocsv = 'C:\\projetocsvglpi'
 if os.path.isfile(arquivocsv):
     shutil.copy2(arquivocsv, destinocsv)
     os.remove(arquivocsv)

@@ -1,2 +1,2 @@
-cd "C:\Users\Lucas\Documents\projetocsvglpi"
+cd "C:\projetocsvglpi"
 python criaTXT.py
