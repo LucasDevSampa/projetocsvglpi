@@ -1,7 +1,7 @@
 import pandas as pd
 from openpyxl import load_workbook
 from openpyxl import Workbook
-from openpyxl.styles import Font, PatternFill, Border, Side, Alignment, Protection
+from openpyxl.styles import Font, PatternFill, Border, Side, Alignment, Protection, Color, Fill
 '''Este codigo pega o arquivo csv e transforma em uma versão excel ja filtrado com as informações necessarias'''
 
 def cria_excel():
@@ -22,7 +22,7 @@ def cria_excel():
 
     i = 2
     while i <= ws.max_row:
-        text = ws['D' + str(i)].value.split("-")
+        text = ws['D' + str(i)].value.split("-", 1)
         ws['D' + str(i)].value = text[1]
         i = i + 1
 
@@ -35,8 +35,18 @@ def cria_excel():
     while i <= ws.max_row:
         ws.cell(i, 1).value += 1
         i+=1
+    #Ajuste das dimensoes das colunas
+    ws.column_dimensions["A"].width = 16.0
+    ws.column_dimensions["B"].width = 33.0
+    ws.column_dimensions["C"].width = 12.0
+    ws.column_dimensions["D"].width = 55.0
+    ws.column_dimensions["E"].width = 20.0
+
+
     #Salvar a planilha
     wb.save("provisorio.xlsx")
+
+   
     print("#Feito")
 
 
