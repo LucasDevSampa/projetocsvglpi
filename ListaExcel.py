@@ -41,8 +41,15 @@ def cria_excel():
     ws.column_dimensions["C"].width = 12.0
     ws.column_dimensions["D"].width = 55.0
     ws.column_dimensions["E"].width = 20.0
+    
+    #Colorindo as celulas do filtros
+    cor = PatternFill(fill_type='solid',fgColor='00B0F0')
 
-
+    i = 1
+    while i < 6:
+        ws.cell(1,i).fill = cor
+        i+=1
+    
     #Salvar a planilha
     wb.save("provisorio.xlsx")
 
