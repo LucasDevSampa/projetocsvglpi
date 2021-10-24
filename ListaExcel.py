@@ -44,7 +44,6 @@ def cria_excel():
     
     #Colorindo as celulas do filtros
     cor = PatternFill(fill_type='solid',fgColor='00B0F0')
-
     i = 1
     while i < 6:
         ws.cell(1,i).fill = cor
